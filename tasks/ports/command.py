@@ -5,14 +5,17 @@ from .errors import (
     RequestValidationError, 
     QuitCommandRequest
 )
-from tasks.repositories.task import TaskJsonRepository
+# from tasks.repositories.task.json import TaskJsonRepository
+from tasks.repositories.task.postgres import TaskPostgresRepository
 from tasks.domain.models import Task
+
+
 class Commander:
     _command_types = ["add", "list", "filter", "quit"]
 
     def __init__(self):
         self._cmd_type = None
-        self.task_repo = TaskJsonRepository()
+        self.task_repo = TaskPostgresRepository()
     
     @property
     def cmd_type(self):
