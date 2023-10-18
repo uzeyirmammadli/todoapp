@@ -1,12 +1,17 @@
 from tasks import command
 from tasks.container import TaskContainer
 from tasks.ports.command import Commander
-from tasks.ports.errors import QuitCommandRequest, RequestValidationError, CommandNotSupported
+from tasks.ports.errors import (
+    QuitCommandRequest,
+    RequestValidationError,
+    CommandNotSupported,
+)
 
 # tasks = list()
 # tasks = TaskContainer()
 
 commander = Commander()
+
 
 def main():
     print("App is started")
@@ -23,6 +28,7 @@ def main():
         # if cmd_name == "quit":
         #     break
         # command.process_command(cmd_name, tasks)
+
 
 if __name__ == "__main__":
     main()

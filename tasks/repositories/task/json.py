@@ -1,13 +1,14 @@
 import json
 from tasks.domain.models import Task
 
+
 class TaskJsonRepository:
     def __init__(self):
         self.collection = {"tasks": []}
         self.tasks_file_name = "tasks.json"
 
-        with open(self.tasks_file_name, "r+")  as tasks_file:
-            file_data  = tasks_file.read()
+        with open(self.tasks_file_name, "r+") as tasks_file:
+            file_data = tasks_file.read()
             task_data = json.loads(file_data)
             self.collection["tasks"] = [Task(**task) for task in task_data["tasks"]]
 
@@ -19,13 +20,12 @@ class TaskJsonRepository:
             tasks_list["tasks"] = [task.to_dict() for task in self.collection["tasks"]]
             tasks_data = json.dumps(tasks_list)
             tasks_file.write(tasks_data)
-    
+
     def list(self):
         for task in self.collection["tasks"]:
             print(task)
-    
+
     def filter(self, search_term):
         for task in self.collection["tasks"]:
             if task.title.find(search_term) >= 0:
                 print(task)
-

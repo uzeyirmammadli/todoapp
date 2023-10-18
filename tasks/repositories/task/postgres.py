@@ -10,9 +10,12 @@ def convert_records(db_records):
     return tasks
 """
 
+
 class TaskPostgresRepository:
     def __init__(self):
-        self.db_conn_str = "host=127.0.0.1 port=5432 dbname=todoapp user=todoapp password=1234"
+        self.db_conn_str = (
+            "host=127.0.0.1 port=5432 dbname=todoapp user=todoapp password=1234"
+        )
         self.db_client = psycopg2.connect(self.db_conn_str)
 
     def list(self):
@@ -24,7 +27,7 @@ class TaskPostgresRepository:
 
         for task_rec in records:
             task = Task(task_rec[1], task_rec[2])
-            task.priority = task_rec[3] 
+            task.priority = task_rec[3]
             task.due_date = task_rec[4]
 
         for t in collection:
@@ -36,7 +39,6 @@ class TaskPostgresRepository:
         to add the new task to the database.
         """
         pass
-
 
     def filter(self, search_term):
         """
